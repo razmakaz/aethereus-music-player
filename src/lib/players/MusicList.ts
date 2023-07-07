@@ -33,8 +33,8 @@ export default [
 	},
 	{
 		name: 'Dark Ruins',
-		resourceId: '11gIfTsXEO6Ta-WOV72V17iyd7eDvdzyx',
-		description: '',
+		resourceId: '15Ssu6i24WfU__C02z_8W9ssW0DA__TtJ',
+		description: 'For all of your dark, eerie needs.',
 		loop: true,
 		image: 'https://i.pinimg.com/originals/19/6c/f3/196cf37e909204b3a0683e56f4f72bb6.jpg'
 	},
