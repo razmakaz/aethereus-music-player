@@ -32,6 +32,13 @@ export default [
 			'https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/foggy-swamp-dead-cypress-photography.jpg'
 	},
 	{
+		name: 'Dark Ruins',
+		resourceId: '11gIfTsXEO6Ta-WOV72V17iyd7eDvdzyx',
+		description: '',
+		loop: true,
+		image: 'https://i.pinimg.com/originals/19/6c/f3/196cf37e909204b3a0683e56f4f72bb6.jpg'
+	},
+	{
 		name: 'Snowy Mountain',
 		resourceId: '11gIfTsXEO6Ta-WOV72V17iyd7eDvdzyx',
 		description: '',
@@ -47,6 +54,7 @@ export default [
 		image:
 			'https://file.valofe.com/Valofe_file//web/mulegend/gl/guide/missionMap/18092017_111124_z-gwangsan-main_402841.jpg'
 	},
+
 	{
 		name: 'Guardian of Echoes',
 		resourceId: '1on9NXs11GLIUuTPwBwqgm_ldDUtB_eny',
