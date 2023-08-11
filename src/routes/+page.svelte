@@ -115,7 +115,7 @@
 			}
 		});
 
-		$filteredMusic = filtered;
+		$filteredMusic = filtered.sort((a, b) => a.name.localeCompare(b.name));
 	});
 </script>
 

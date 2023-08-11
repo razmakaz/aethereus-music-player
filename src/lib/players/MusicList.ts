@@ -54,13 +54,49 @@ export default [
 		image:
 			'https://file.valofe.com/Valofe_file//web/mulegend/gl/guide/missionMap/18092017_111124_z-gwangsan-main_402841.jpg'
 	},
-
 	{
-		name: 'Guardian of Echoes',
-		resourceId: '1on9NXs11GLIUuTPwBwqgm_ldDUtB_eny',
+		name: 'Ambient Cemetery',
+		resourceId: '1QEcm4DC3AVjXBxQVNS1ahewyW7xjNEf6',
 		description: '',
 		loop: true,
-		image: 'https://i.pinimg.com/originals/19/93/df/1993df2af48a74828dc13aaadc329af7.jpg'
+		image: 'https://cdn.wallpapersafari.com/64/20/VyIE2Z.jpg'
+	},
+	{
+		name: 'Guardhouse',
+		resourceId: '1MLwCJ6XtCS0pZfrrWgldDnb8Rp2Y_fPc',
+		description: '',
+		loop: true,
+		image: 'https://i.pinimg.com/1200x/0f/61/3f/0f613f52ac4d88e7247a8fb024d3367b.jpg'
+	},
+	{
+		name: 'Sinister Presence',
+		resourceId: '1tHrA0q4ks0D_3ioLKdTYQHQEdn6mpNt0',
+		description: '',
+		loop: true,
+		image: 'https://i.pinimg.com/originals/6a/4a/77/6a4a77b0af43267a4a268ce587e5752c.jpg'
+	},
+	{
+		name: 'Dark Corridors',
+		resourceId: '1EUZYIzI-mAvPPLHVFuoggoQh-syy3JmN',
+		description: '',
+		loop: true,
+		image: 'https://i.pinimg.com/736x/f5/a3/44/f5a344f17f7642e9d7f48434ed03920f--realm.jpg'
+	},
+	{
+		name: 'Neptune',
+		resourceId: '1MTzFuWsCnX4q5xUhlJrSTcAslN3oa_Le',
+		description: '',
+		loop: true,
+		image: 'https://w0.peakpx.com/wallpaper/256/700/HD-wallpaper-fantasy-aquarium-child-shark.jpg'
+	},
+
+	{
+		name: 'Safe Haven',
+		resourceId: '1d6JvVWmcZjvQ5WxfSP5qWVkHNNoB0OZS',
+		description: '',
+		loop: true,
+		image:
+			'https://deathsave.com/wp-content/uploads/2023/05/taking-a-short-rest-using-hit-dice-768x402.jpg'
 	},
 
 	{
