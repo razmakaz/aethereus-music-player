@@ -5,10 +5,12 @@
 	import AmbienceList from '$lib/players/AmbienceList';
 	import { onMount, onDestroy } from 'svelte';
 	import { RangeSlider } from '@skeletonlabs/skeleton';
-	import { fly, scale } from 'svelte/transition';
+	import { fade, fly, scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 
 	let unsubscribePlayerStore: Unsubscriber;
+	let unsubscribeMusicPlayerSeek: Unsubscriber;
+	let musicPlayer: HTMLAudioElement;
 
 	// https://docs.google.com/uc?id=yourDocId&export=download&hl=en_US
 
@@ -23,7 +25,7 @@
 	});
 
 	onMount(() => {
-		const musicPlayer = document.getElementById('music-player') as HTMLAudioElement;
+		musicPlayer = document.getElementById('music-player') as HTMLAudioElement;
 		$playerStore.music.player = musicPlayer;
 
 		const ambiencePlayer = document.getElementById('ambience-player') as HTMLAudioElement;
@@ -56,6 +58,14 @@
 			}
 		}, 10);
 	});
+
+	const handleSeekForward = () => {
+		musicPlayer.currentTime = Math.min(musicPlayer.duration, musicPlayer.currentTime + 15);
+	};
+
+	const handleSeekBackward = () => {
+		musicPlayer.currentTime = Math.max(0, musicPlayer.currentTime - 15);
+	};
 
 	onDestroy(() => {
 		if (unsubscribePlayerStore) {
@@ -153,54 +163,91 @@
 							: 'variant-filled-secondary scale-105 shadow-md'
 						: 'variant-soft'}"
 				>
-					<img class="h-[100px] object-cover w-[150px]" src={music.image} alt={music.name} />
+					<img class="h-[120px] object-cover w-[150px]" src={music.image} alt={music.name} />
 					<div class="flex flex-col gap-2 w-full">
 						<div class="text-lg flex gap-4 items-center">
 							<span>{music.name}</span>
 							<span class="text-sm italic">{music.description ?? ''}</span>
 						</div>
-						<button
-							class="btn active:scale-100 transition-all duration-100 flex gap-4 mr-4 {$playerStore
-								.music.resourceId === music.resourceId
-								? 'variant-ghost-tertiary'
-								: 'btn-icon variant-filled-primary'}"
-							on:click={() => handlePlay(music.resourceId)}
-						>
-							{#if $playerStore.music.resourceId === music.resourceId}
-								{#if $playerStore.music.loading}
-									<div>
-										<i class="fa-solid fa-spinner animate-spin" />
-									</div>
-								{:else}
-									{#if $playerStore.music.paused}
+						<div class="grid grid-cols-[1fr_auto_auto] mr-4 gap-3">
+							<button
+								class="btn active:scale-100 transition-all duration-100 flex gap-4 mr-4 {$playerStore
+									.music.resourceId === music.resourceId
+									? 'variant-ghost-tertiary'
+									: 'btn-icon variant-filled-primary'}"
+								on:click={() => handlePlay(music.resourceId)}
+							>
+								{#if $playerStore.music.resourceId === music.resourceId}
+									{#if $playerStore.music.loading}
 										<div>
-											<i class="fa-solid fa-play" />
+											<i class="fa-solid fa-spinner animate-spin" />
 										</div>
 									{:else}
-										<div>
-											<i class="fa-solid fa-pause" />
+										{#if $playerStore.music.paused}
+											<div>
+												<i class="fa-solid fa-play" />
+											</div>
+										{:else}
+											<div>
+												<i class="fa-solid fa-pause" />
+											</div>
+										{/if}
+										<div class="flex flex-col w-full">
+											<RangeSlider
+												id="music-volume-slider"
+												name="music-volume"
+												on:change={(e) =>
+													console.log('change', (musicPlayer.currentTime = e.target.value))}
+												class="w-full transition-opacity duration-150 {$playerStore.music
+													.resourceId === music.resourceId
+													? 'opacity-100'
+													: ' opacity-0'}"
+												min={0}
+												max={$musicPlayerSeek.duration}
+												step={0.001}
+											/>
+											<RangeSlider
+												id="music-volume-slider"
+												name="music-volume"
+												class="w-full transition-opacity duration-150 {$playerStore.music
+													.resourceId === music.resourceId
+													? 'opacity-100'
+													: ' opacity-0'}"
+												disabled
+												value={$musicPlayerSeek.current}
+												min={0}
+												max={$musicPlayerSeek.duration}
+												step={0.001}
+											/>
 										</div>
 									{/if}
-									<RangeSlider
-										id="music-volume-slider"
-										name="music-volume"
-										class="w-full transition-opacity duration-150 {$playerStore.music.resourceId ===
-										music.resourceId
-											? 'opacity-100'
-											: ' opacity-0'}"
-										disabled
-										value={$musicPlayerSeek.current}
-										min={0}
-										max={$musicPlayerSeek.duration}
-										step={0.001}
-									/>
+								{:else}
+									<div>
+										<i class="fa-solid fa-play" />
+									</div>
 								{/if}
-							{:else}
-								<div>
-									<i class="fa-solid fa-play" />
-								</div>
+							</button>
+							{#if $playerStore.music.resourceId === music.resourceId}
+								{#key $playerStore.music.resourceId}
+									<button
+										transition:fade={{ duration: 222 }}
+										class="btn variant-filled-primary rounded-full"
+										on:click={handleSeekBackward}
+									>
+										<i class="fa-solid fa-angle-double-left" />
+									</button>
+								{/key}
+								{#key $playerStore.music.resourceId + 'i'}
+									<button
+										transition:fade={{ duration: 222 }}
+										class="btn variant-filled-primary rounded-full"
+										on:click={handleSeekForward}
+									>
+										<i class="fa-solid fa-angle-double-right" />
+									</button>
+								{/key}
 							{/if}
-						</button>
+						</div>
 					</div>
 				</div>
 			{/each}

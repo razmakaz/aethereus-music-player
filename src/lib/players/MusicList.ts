@@ -99,7 +99,7 @@ export default [
 	},
 	{
 		name: "The Hero's Era",
-		resourceId: '1JfrPrVi6LrOWzYtLtpNuQd9O5gGRcBbn',
+		resourceId: '1IOOgvk2OcERVmtVs2AxikYsErrAZdAJr',
 		description: '',
 		loop: true,
 		image:
