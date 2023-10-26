@@ -171,11 +171,11 @@
 						</div>
 						<div class="grid grid-cols-[1fr_auto_auto] mr-4 gap-3">
 							<button
+								on:click={() => handlePlay(music.resourceId)}
 								class="btn active:scale-100 transition-all duration-100 flex gap-4 mr-4 {$playerStore
 									.music.resourceId === music.resourceId
 									? 'variant-ghost-tertiary'
 									: 'btn-icon variant-filled-primary'}"
-								on:click={() => handlePlay(music.resourceId)}
 							>
 								{#if $playerStore.music.resourceId === music.resourceId}
 									{#if $playerStore.music.loading}
@@ -184,18 +184,19 @@
 										</div>
 									{:else}
 										{#if $playerStore.music.paused}
-											<div>
+											<button>
 												<i class="fa-solid fa-play" />
-											</div>
+											</button>
 										{:else}
-											<div>
+											<button>
 												<i class="fa-solid fa-pause" />
-											</div>
+											</button>
 										{/if}
 										<div class="flex flex-col w-full">
 											<RangeSlider
 												id="music-volume-slider"
 												name="music-volume"
+												on:click={(e) => e.stopPropagation()}
 												on:change={(e) =>
 													console.log('change', (musicPlayer.currentTime = e.target.value))}
 												class="w-full transition-opacity duration-150 {$playerStore.music
