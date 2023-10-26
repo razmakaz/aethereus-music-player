@@ -153,6 +153,14 @@ export default [
 		image:
 			'https://cdna.artstation.com/p/assets/images/images/019/676/780/large/stoica-alex-asor-in-um-tre-white-world.jpg?1564548767'
 	},
+	{
+		name: 'HALLOWEEN',
+		resourceId: '1NXNr4wsJTVuHfakIeSbtMYOf_PI3VgJ-',
+		description: 'Boo! 👻',
+		loop: false,
+		image:
+			'https://cdna.artstation.com/p/assets/images/images/019/676/780/large/stoica-alex-asor-in-um-tre-white-world.jpg?1564548767'
+	},
 
 	{
 		name: 'Part 1 Ending',
